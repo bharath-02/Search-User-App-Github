@@ -1,7 +1,7 @@
 var form = document.getElementById('myForm');
 
-form.addEventListener('submit', async function() {
-    // submit.preventDefault();
+form.addEventListener('submit', async function(submit) {
+    submit.preventDefault();
 
     var name = document.getElementById('search').value;
 
