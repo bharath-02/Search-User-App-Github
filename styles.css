@@ -13,6 +13,7 @@ h1.heading {
     text-align: center;
     font-family: 'Roboto', sans-serif;
     margin-top: 5%;
+    font-size: 45px;
 }
 
 form#myForm {
@@ -44,4 +45,42 @@ div.form-group button:hover {
     background-color: white;
     color: red;
     border: 1px solid red;
+}
+
+div#resultData {
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    margin-top: 2%;
+    padding: 10px;
+}
+
+#repoid {
+    text-decoration: none;
+    color: blue;
+}
+
+#repoid:hover {
+    text-decoration: underline;
+    color: red;
+}
+
+.rep {
+    text-decoration: none;
+    color: blue;
+    text-align: justify;
+}
+
+.rep:hover {
+    text-decoration: underline;
+    color: red;
+}
+
+@media screen and (max-width:500px) {
+    div.form-group input {
+        width: 70%;
+    }
+    div.form-group button {
+        width: 70%;
+    }
 }

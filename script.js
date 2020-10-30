@@ -1,7 +1,7 @@
 var form = document.getElementById('myForm');
 
-form.addEventListener('submit', async function(submit) {
-    submit.preventDefault();
+form.addEventListener('submit', async function() {
+    // submit.preventDefault();
 
     var name = document.getElementById('search').value;
 
@@ -9,13 +9,33 @@ form.addEventListener('submit', async function(submit) {
     var data = await response.json();
     console.log(data);
 
-    var result = document.getElementById('resultData').innerHTML = `
-        <a href=${data.repos_url} target="_blank"> Repositories </a>
-    `;
-    // var a = document.createElement('a');
-    // a.setAttribute('href', data.repos_url);
-    // a.setAttribute('target', '_blank')
-    // a.innerHTML = 'Repos';
-    // result.append(a);
-    // result.innerHTML = ;
+    var result = document.getElementById('resultData');
+
+    document.getElementById('repoData').innerHTML = '';
+
+    var a = document.createElement('a');
+    a.setAttribute('href', '#');
+    a.setAttribute('class', 'repoClass');
+    a.id = 'repoid';
+    a.innerHTML = 'Repos';
+    result.append(a);
+    // a.setAttribute('target', '_blank');
+    // a.setAttribute('onclick', showRepo(name))
+    a.addEventListener('click', async function() {
+        // d.preventDefault();
+        document.getElementById('repoid').style.display = 'none';
+        var reposData = await fetch('https://api.github.com/users/' + name + '/repos');
+        var repo = await reposData.json();
+        console.log(repo);
+        var repoResult = document.getElementById('repoData');
+        for (var i = 0; i < data.public_repos; i++) {
+            var div = document.createElement('div');
+            div.innerHTML = `
+                <a href="${repo[i].html_url}" target='_blank' class='rep'> ${repo[i].name} </a>
+            `;
+            repoResult.append(div);
+            console.log(repo[i].html_url);
+        }
+    })
+
 })
