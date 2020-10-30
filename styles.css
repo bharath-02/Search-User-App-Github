@@ -1,0 +1,47 @@
+/* Defaults */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Custom styles */
+
+h1.heading {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 5%;
+}
+
+form#myForm {
+    margin-top: 3%;
+}
+
+div.form-group {
+    text-align: center;
+}
+
+div.form-group input {
+    width: 20%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-bottom: 1%;
+}
+
+div.form-group button {
+    width: 20%;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+div.form-group button:hover {
+    background-color: white;
+    color: red;
+    border: 1px solid red;
+}
