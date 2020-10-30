@@ -17,12 +17,10 @@ form.addEventListener('submit', async function(submit) {
     a.setAttribute('href', '#');
     a.setAttribute('class', 'repoClass');
     a.id = 'repoid';
-    a.innerHTML = 'Repos';
+    a.innerHTML = 'View Repositories';
     result.append(a);
-    // a.setAttribute('target', '_blank');
-    // a.setAttribute('onclick', showRepo(name))
+
     a.addEventListener('click', async function() {
-        // d.preventDefault();
         document.getElementById('repoid').style.display = 'none';
         var reposData = await fetch('https://api.github.com/users/' + name + '/repos');
         var repo = await reposData.json();
