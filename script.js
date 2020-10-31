@@ -70,7 +70,7 @@ async function showData(start, end, userName) {
     var div = document.createElement('ul');
     for (var i = start; i < end; i++) {
         console.log(repo[i].name);
-        if (i === repo.length) {
+        if (i === (repo.length - 1)) {
             break;
         } else {
             var list = document.createElement('li');
