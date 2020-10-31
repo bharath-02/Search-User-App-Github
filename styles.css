@@ -58,6 +58,7 @@ div#resultData {
 #repoid {
     text-decoration: none;
     color: blue;
+    font-family: 'Roboto', sans-serif;
 }
 
 #repoid:hover {
@@ -66,6 +67,7 @@ div#resultData {
 }
 
 .rep {
+    font-family: 'Roboto', sans-serif;
     text-decoration: none;
     color: blue;
 }
