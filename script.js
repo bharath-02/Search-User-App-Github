@@ -12,11 +12,11 @@ form.addEventListener('submit', async function(submit) {
     // Fetch the data using the below API
     var response = await fetch('https://api.github.com/users/' + name);
     var data = await response.json();
-    console.log(data);
 
+    // Place to display the result
     var result = document.getElementById('repoData');
-
     result.innerHTML = '';
+
     document.getElementById('pagi').innerHTML = '';
 
     var a = document.createElement('a');
@@ -25,15 +25,19 @@ form.addEventListener('submit', async function(submit) {
     a.id = 'repoid';
     a.innerHTML = 'View Repositories';
     result.append(a);
-
+    // Adding Event Listener to view the repositories
     a.addEventListener('click', async function(s) {
+        // Prompt for knowing how much repositories per page
         var value = prompt('How many repositories per page');
         value = parseInt(value);
         s.preventDefault();
         document.getElementById('repoid').style.display = 'none';
+
+        // Fetching repository lists
         var reposData = await fetch('https://api.github.com/users/' + name + '/repos');
         var repo = await reposData.json();
-        console.log(repo);
+
+        // Logics behind the pagination
         var total = parseInt(repo.length);
         var loopCount;
         if ((total % value) === 0) {
@@ -41,54 +45,40 @@ form.addEventListener('submit', async function(submit) {
         } else {
             loopCount = Math.floor((total / value) + 1);
         }
-        console.log(loopCount)
+
+        // Loop to create Pagination Dynamically
         for (var z = 0; z < loopCount; z++) {
             var link = document.createElement('a');
             link.setAttribute('href', '#');
             var start = (z * value);
             var end = ((z * value) + value);
-            // link.addEventListener('click', function(d) {
-            //         var ul = document.createElement('ul');
-            //         for (var itr = start; itr < end; itr++) {
-            //             var list = document.createElement('li');
-            //             list.innerHTML = `
-            //                 <a href="${repo[i].html_url}" target='_blank' class='rep'>${repo[i].name}</a>
-            //             `;
-            //             ul.append(list);
-            //         }
-
-            //     })
             link.setAttribute('onclick', `showData('${start}','${end}','${name}')`);
             link.innerHTML = z + 1;
             document.getElementById('pagi').append(link);
         }
+    });
+});
 
-        // var repoResult = document.getElementById('repoData');
-        // for (var i = 0; i < data.public_repos; i++) {
-        //     var div = document.createElement('div');
-        // div.innerHTML = `
-        //         <a href="${repo[i].html_url}" target='_blank' class='rep'> ${repo[i].name} </a>
-        //     `;
-        //     repoResult.append(div);
-        //     console.log(repo[i].html_url);
-        // }
-    })
-
-})
-
+// function to create list of repositories 
 async function showData(start, end, userName) {
     var repoResult = document.getElementById('repoData');
     repoResult.innerHTML = '';
-    // userName = '' + userName;
+
+    // Again fetching repository lists
     var reposData = await fetch('https://api.github.com/users/' + userName + '/repos');
     var repo = await reposData.json();
     var div = document.createElement('ul');
     for (var i = start; i < end; i++) {
-        var list = document.createElement('li');
-        list.innerHTML = `
-            <a href="${repo[i].html_url}" target='_blank' class='rep'>${repo[i].name}</a>
-        `;
-        div.append(list);
+        console.log(repo[i].name);
+        if (i === repo.length) {
+            break;
+        } else {
+            var list = document.createElement('li');
+            list.innerHTML = `
+                <a href="${repo[i].html_url}" target='_blank' class='rep'>${repo[i].name}</a>
+            `;
+            div.append(list);
+        }
     }
     repoResult.append(div);
 }
