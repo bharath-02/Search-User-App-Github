@@ -47,7 +47,18 @@ form.addEventListener('submit', async function(submit) {
             link.setAttribute('href', '#');
             var start = (z * value);
             var end = ((z * value) + value);
-            link.setAttribute('onclick', `showData(${start},${end},${name})`);
+            // link.addEventListener('click', function(d) {
+            //         var ul = document.createElement('ul');
+            //         for (var itr = start; itr < end; itr++) {
+            //             var list = document.createElement('li');
+            //             list.innerHTML = `
+            //                 <a href="${repo[i].html_url}" target='_blank' class='rep'>${repo[i].name}</a>
+            //             `;
+            //             ul.append(list);
+            //         }
+
+            //     })
+            link.setAttribute('onclick', `showData('${start}','${end}','${name}')`);
             link.innerHTML = z + 1;
             document.getElementById('pagi').append(link);
         }
@@ -55,7 +66,7 @@ form.addEventListener('submit', async function(submit) {
         // var repoResult = document.getElementById('repoData');
         // for (var i = 0; i < data.public_repos; i++) {
         //     var div = document.createElement('div');
-        //     div.innerHTML = `
+        // div.innerHTML = `
         //         <a href="${repo[i].html_url}" target='_blank' class='rep'> ${repo[i].name} </a>
         //     `;
         //     repoResult.append(div);
@@ -67,10 +78,11 @@ form.addEventListener('submit', async function(submit) {
 
 async function showData(start, end, userName) {
     var repoResult = document.getElementById('repoData');
-    userName = '' + userName;
+    repoResult.innerHTML = '';
+    // userName = '' + userName;
     var reposData = await fetch('https://api.github.com/users/' + userName + '/repos');
     var repo = await reposData.json();
-    var div = document.createElement('div');
+    var div = document.createElement('ul');
     for (var i = start; i < end; i++) {
         var list = document.createElement('li');
         list.innerHTML = `
