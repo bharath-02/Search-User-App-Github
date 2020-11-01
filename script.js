@@ -1,5 +1,5 @@
 // ID of the form element
-var form = document.getElementById('myForm');
+var form = document.getElementById('myform');
 
 // Adding Event Listener while the form gets submmitted
 form.addEventListener('submit', async function(submit) {
